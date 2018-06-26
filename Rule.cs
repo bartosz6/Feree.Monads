@@ -5,39 +5,34 @@ namespace Feree.Validator
     public class Rule<T>
     {
         private readonly Func<T> _valueExtractor;
-        private Func<T, bool> _validationFuncion = _ => true;
-        private Func<bool> _conditionFunction = () => true;
-        private string _errorMessage = "validation failed";
-        private Rule(Func<T> valueExtractor) => _valueExtractor = valueExtractor;
-
-        public static Rule<T> For(Func<T> valueExtractor) => new Rule<T>(valueExtractor);
-
-        public Rule<T> Must(Func<T, bool> predicate)
+        private readonly Func<T, bool> _validationFunction;
+        private readonly Func<bool> _conditionFunction;
+        private readonly string _errorMessage;
+    
+        private Rule(Func<T> valueExtractor, Func<T, bool> validationFunction, Func<bool> conditionFunction, string errorMessage)
         {
-            _validationFuncion = predicate;
-            return this;
+            _valueExtractor = valueExtractor;
+            _validationFunction = validationFunction;
+            _conditionFunction = conditionFunction;
+            _errorMessage = errorMessage;
         }
 
-        public Rule<T> Message(string message)
-        {
-            _errorMessage = message;
-            return this;
-        }
+        public static Rule<T> For(Func<T> valueExtractor) =>
+            new Rule<T>(valueExtractor, _ => true, () => true, "validation failed");
+        public Rule<T> Must(Func<T, bool> validationFunction) =>
+            new Rule<T>(_valueExtractor, validationFunction, _conditionFunction, _errorMessage);
 
-        public Rule<T> When(Func<bool> condition)
-        {
-            _conditionFunction = condition;
-            return this;
-        }
+        public Rule<T> Message(string errorMessage) =>
+            new Rule<T>(_valueExtractor, _validationFunction, _conditionFunction, errorMessage);
 
-        public Rule<T> When(Func<T, bool> condition)
-        {
-            _conditionFunction = () => condition(_valueExtractor());
-            return this;
-        }
+        public Rule<T> When(Func<bool> conditionFunction) =>
+            new Rule<T>(_valueExtractor, _validationFunction, conditionFunction, _errorMessage);
+
+        public Rule<T> When(Func<T, bool> conditionFunction) => 
+            new Rule<T>(_valueExtractor, _validationFunction, () => conditionFunction(_valueExtractor()), _errorMessage);
 
         public ValidatonResult Apply() =>
-            _validationFuncion == null || _validationFuncion(_valueExtractor())
+            _validationFunction == null || _validationFunction(_valueExtractor())
                 ? ValidatonResult.CreateSuccess()
                 : ValidatonResult.CreateFailure(new[] { _errorMessage });
     }

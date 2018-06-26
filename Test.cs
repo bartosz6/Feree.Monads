@@ -14,8 +14,10 @@ namespace validator
                             .For(() => price)
                             .Must(x => x > 0)
                             .When(x => x != -5)
-                            .Message("error")
-                            .Apply();
+                            .Message("error");
+                            //.Apply();
+
+                        var rule2 = new Rule<string>();
 
             var success = result is ValidatonResult.Success;
         }
