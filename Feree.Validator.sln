@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# 
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{06EEB666-2791-4ED8-913A-D38FF0AB2E1A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Feree.Validator", "src\Feree.Validator\Feree.Validator.csproj", "{B8727C84-DDF4-4786-B102-6064A5B6E485}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{6162F3E1-3734-4599-9ED2-FDEF36D1F97A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Feree.Validator.Tests", "test\Feree.Validator.Tests\Feree.Validator.Tests.csproj", "{8B19C5AD-F1CC-4878-9383-409F5DB7186E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B8727C84-DDF4-4786-B102-6064A5B6E485}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B8727C84-DDF4-4786-B102-6064A5B6E485}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B8727C84-DDF4-4786-B102-6064A5B6E485}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B8727C84-DDF4-4786-B102-6064A5B6E485}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8B19C5AD-F1CC-4878-9383-409F5DB7186E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8B19C5AD-F1CC-4878-9383-409F5DB7186E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8B19C5AD-F1CC-4878-9383-409F5DB7186E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8B19C5AD-F1CC-4878-9383-409F5DB7186E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{B8727C84-DDF4-4786-B102-6064A5B6E485} = {06EEB666-2791-4ED8-913A-D38FF0AB2E1A}
+		{8B19C5AD-F1CC-4878-9383-409F5DB7186E} = {6162F3E1-3734-4599-9ED2-FDEF36D1F97A}
+	EndGlobalSection
+EndGlobal
